@@ -20,7 +20,7 @@
   </style>
 </head>
 <body>
-  <p>You can review a movie. <a href="review.html"><b>Click here.</b></a></p>
+  <p>You can review a movie. <a href="{{ url_for('static', filename=review.html) }}"><b>Click here.</b></a></p>
   <div id="content" class="container-fluid"></div>
   <script>
       var host = "http://" + window.location.host;
@@ -88,7 +88,7 @@
 
       for (var i = 0; i < movies.length; i++) {
         var url = host + "/reviews/movie/" + movies[i]["id"];
-        var imagePath = movies[i]["poster"] ? "static/images/" + movies[i]["id"] + ".jpg" : "static/images/noimg.png"
+        var imagePath = movies[i]["poster"] ? "images/" + movies[i]["id"] + ".jpg" : "images/noimg.png"
         var ul = document.createElement('ul');
         var liImage = document.createElement("li");
         var liDescription = document.createElement("li");
