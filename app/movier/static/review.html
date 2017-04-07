@@ -33,11 +33,7 @@
   </div>
   <div id="content"></div>
   <script>
-      console.log(window.location.host)
-      console.log(window.location.hostname)
-      console.log(window.location.protocol)
-      console.log(window.location.port)
-      var host = "http://45.55.77.201:5000/"
+      var host = "http://" + window.location.host;
       var cache = []
       var list = []
       var input = document.getElementById("movies");
@@ -105,7 +101,7 @@
       function dbSearch(searchTerm) {
         return new Promise(function(resolve, reject) {
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', "http://localhost:5000/movies/search/?query=" + searchTerm, true);
+        xhr.open('GET', host + "/movies/search/?query=" + searchTerm, true);
         xhr.send();
         xhr.onreadystatechange = function () {
           if (this.readyState == 4 && this.status == 200) {
@@ -122,7 +118,7 @@
         console.log("Adding Movies");
         var data = { movies: movies }
         var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("POST", "http://localhost:5000/movies", true);
+        xmlhttp.open("POST", host + "/movies", true);
         xmlhttp.setRequestHeader("Content-Type", "application/json");
         xmlhttp.send(JSON.stringify(data));
       }
@@ -163,7 +159,7 @@
         data.append('device_id', userAgent);
 
         var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("POST", "http://localhost:5000/reviews", true);
+        xmlhttp.open("POST", host + "/reviews", true);
         xmlhttp.send(data);
         xmlhttp.onreadystatechange = function () {
             var container = document.getElementById('content');

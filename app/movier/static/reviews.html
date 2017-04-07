@@ -23,10 +23,11 @@
   <p>You can review a movie. <a href="review.html"><b>Click here.</b></a></p>
   <div id="content" class="container-fluid"></div>
   <script>
+      var host = "http://" + window.location.host;
       function getMovieReview(movie_id) {
         return new Promise(function(resolve, reject) {
           var xhr = new XMLHttpRequest();
-          xhr.open('GET', "http://localhost:5000/reviews/movie/" + movie_id, true);
+          xhr.open('GET', host + "/reviews/movie/" + movie_id, true);
           xhr.send();
           xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
@@ -41,7 +42,7 @@
       function getReviewedMovies() {
         return new Promise(function(resolve, reject) {
           var xhr = new XMLHttpRequest();
-          xhr.open('GET', "http://localhost:5000/movies/reviewed", true);
+          xhr.open('GET', host + "/movies/reviewed", true);
           xhr.send();
           xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
@@ -86,7 +87,7 @@
       var container = document.getElementById("content")
 
       for (var i = 0; i < movies.length; i++) {
-        var url = "http://localhost:5000/reviews/movie/" + movies[i]["id"];
+        var url = host + "/reviews/movie/" + movies[i]["id"];
         var imagePath = movies[i]["poster"] ? "static/images/" + movies[i]["id"] + ".jpg" : "static/images/noimg.png"
         var ul = document.createElement('ul');
         var liImage = document.createElement("li");
