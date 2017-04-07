@@ -87,7 +87,7 @@
       var container = document.getElementById("content")
 
       for (var i = 0; i < movies.length; i++) {
-        var url = host + "/reviews/movie/" + movies[i]["id"];
+        var url = host + /reviews/movie/" + movies[i]["id"];
         var imagePath = movies[i]["poster"] ? "static/images/" + movies[i]["id"] + ".jpg" : "static/images/noimg.png"
         var ul = document.createElement('ul');
         var liImage = document.createElement("li");
