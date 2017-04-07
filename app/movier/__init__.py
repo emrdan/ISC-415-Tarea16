@@ -17,5 +17,4 @@ app.register_blueprint(main, url_prefix='/')
 
 @app.route("/")
 def hello():
-    return app.send_static_file('reviews.html');
-
+    return app.send_static_file('reviews.html')
