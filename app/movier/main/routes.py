@@ -20,9 +20,9 @@ def movie_handler():
           if movies[i]["poster_path"] is not None:
             posterUrl = "http://image.tmdb.org/t/p/w150" + movies[i]["poster_path"]
             if platform == "win32":
-              localUrl = os.getcwd() + '\movier\static\images\\' + str(movies[i]["id"]) + ".jpg"
+              localUrl = os.path.abspath(os.path.join(os.getcwd(), os.pardir)) + '\\app\movier\static\images\\' + str(movies[i]["id"]) + ".jpg"
             else:
-              localUrl = os.getcwd() + '/movier/static/images/' + str(movies[i]["id"]) + ".jpg"
+              localUrl = os.path.abspath(os.path.join(os.getcwd(), os.pardir)) + '/app/movier/static/images/' + str(movies[i]["id"]) + ".jpg"
             urllib.request.urlretrieve(posterUrl, localUrl)
             movie = Movie(movies[i]["id"], movies[i]["title"], movies[i]["overview"], movies[i]["poster_path"])
           else:
