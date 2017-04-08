@@ -17,5 +17,6 @@ app.register_blueprint(main, url_prefix='/')
 
 @app.route("/")
 def home():
+    print(app.config)
     return app.send_static_file('reviews.html')
 
