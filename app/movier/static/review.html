@@ -33,7 +33,8 @@
   </div>
   <div id="content"></div>
   <script>
-      var host = "http://" + window.location.host;
+      var port = 5000;
+      var host = "http://" + window.location.hostname + ":" + port;
       var cache = []
       var list = []
       var input = document.getElementById("movies");

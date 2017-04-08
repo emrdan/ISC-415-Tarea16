@@ -49,7 +49,8 @@
     </div>
   </div>
   <script>
-      var host = "http://" + window.location.host;
+      var port = 5000;
+      var host = "http://" + window.location.hostname + ":" + port;
       var maxRating = 5;
       function getMovie(movie_id) {
         return new Promise(function(resolve, reject) {
