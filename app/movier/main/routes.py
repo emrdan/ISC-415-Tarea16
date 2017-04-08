@@ -20,11 +20,11 @@ def movie_handler():
           if movies[i]["poster_path"] is not None:
             posterUrl = "http://image.tmdb.org/t/p/w150" + movies[i]["poster_path"]
             print(os.getcwd())
-            print(main.static_folder)
             print(os.path.dirname(__file__))
             print(os.path.abspath(__file__))
             print(os.path.realpath(__file__))
             print(os.pardir)
+            print(os.path.dirname(os.path.abspath(__file__)))
             print(os.path.abspath(os.path.join(os.getcwd(), os.pardir)))
             if platform == "win32":
               localUrl = os.path.abspath(os.path.join(os.getcwd(), os.pardir)) + '\client\static\images\\' + str(movies[i]["id"]) + ".jpg"
