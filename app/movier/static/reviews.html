@@ -23,8 +23,7 @@
   <p>You can review a movie. <a href="review.html"><b>Click here.</b></a></p>
   <div id="content" class="container-fluid"></div>
   <script>
-      var port = 5000;
-      var host = "http://" + window.location.hostname + ":" + port;
+      var host = "http://" + window.location.hostname;
       function getMovieReview(movie_id) {
         return new Promise(function(resolve, reject) {
           var xhr = new XMLHttpRequest();
