@@ -1,6 +1,7 @@
 # ISC-415-Tarea16
 
 carpeta myproject ---> dannyg | /home/daniel/dannyg
+
 carpeta myvritualenv ---> myenv | /home/daniel/dannyg/myenv
 
 la app | /home/daniel/dannyg/web/app
