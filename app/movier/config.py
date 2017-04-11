@@ -30,7 +30,7 @@ config = {
 }
 
 
-def configure_app(app):
+def configure_application(application):
     config_name = os.getenv('FLASK_CONFIGURATION', 'default')
-    app.config.from_object(config[config_name])
+    application.config.from_object(config[config_name])
 

@@ -1,4 +1,4 @@
-from movier import app as application
+from movier import application
 
 if __name__ == '__main__':
     application.run(host = '0.0.0.0')
