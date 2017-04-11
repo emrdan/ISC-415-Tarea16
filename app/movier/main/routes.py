@@ -1,4 +1,4 @@
-from flask import request, Blueprint
+from flask import request, Blueprint, url_for, send_from_directory
 from flask import jsonify
 from flask import make_response
 from movier.data.models import db, Movie, Review
@@ -8,23 +8,7 @@ import os
 
 main = Blueprint('main', __name__)
 
-@main.route("/")
-def home():
-  return application.send_static_file("reviews.html");
-
-@main.route('/<path:filename>')
-def serve_html(filename):
-    return send_from_directory("static", filename, as_attachment=False)
-
-@main.route('/css/<path:filename>')
-def serve_css(filename):
-    return send_from_directory("static/css", filename, as_attachment=False)
-
-@main.route('/js/<path:filename>')
-def serve_js(filename):
-    return send_from_directory("static/js", filename, as_attachment=False)
-
-@main.route('movies', methods=["POST"])
+@main.route('/movies', methods=["POST"])
 def movie_handler():
   if request.method == 'POST':
     data = request.get_json()
@@ -47,7 +31,7 @@ def movie_handler():
           db.session.commit()
   return "Done"
 
-@main.route('movies/search/', methods=["GET"])
+@main.route('/movies/search/', methods=["GET"])
 def movies_search_handler():
   if request.method == 'GET':
     query = request.args.get('query')
@@ -55,7 +39,7 @@ def movies_search_handler():
     movies = [movie.serialize() for movie in movies]
     return jsonify(movies)
 
-@main.route('movies/all/', methods=["GET"])
+@main.route('/movies/all/', methods=["GET"])
 def movies_all_handler():
   if request.method == 'GET':
     movies = Movie.query.all()
@@ -63,7 +47,7 @@ def movies_all_handler():
     return jsonify(movies)
 
 
-@main.route('reviews', methods=["POST"])
+@main.route('/reviews', methods=["POST"])
 def reviews_handler():
   if request.method == 'POST':
     data = request.form.to_dict()
@@ -81,7 +65,7 @@ def reviews_handler():
         resp = make_response("Movie does not exist", 404)
     return resp
 
-@main.route('movies/reviewed', methods=["GET"])
+@main.route('/movies/reviewed', methods=["GET"])
 def movies_reviewed_handler():
   if request.method == 'GET':
     movies = Movie.query.all()
@@ -97,7 +81,7 @@ def movies_reviewed_handler():
       movie["average"] = avg
     return jsonify(movies_reviewed)
 
-@main.route('movies/<movie_id>', methods=["GET"])
+@main.route('/movies/<movie_id>', methods=["GET"])
 def movie_ic_handler(movie_id):
   if request.method == 'GET':
     movie = Movie.query.filter_by(id=movie_id).first()
@@ -111,7 +95,7 @@ def movie_ic_handler(movie_id):
     movie["average"] = avg
     return jsonify(movie)
 
-@main.route('reviews/movie/<movie_id>', methods=["GET"])
+@main.route('/reviews/movie/<movie_id>', methods=["GET"])
 def reviews_by_movie_handler(movie_id):
   if request.method == 'GET':
     movie = Movie.query.filter_by(id=movie_id).first()
@@ -119,7 +103,7 @@ def reviews_by_movie_handler(movie_id):
     reviews = movie["reviews"]
     return jsonify(reviews)
 
-@main.route('reviews/<review_id>', methods=["GET"])
+@main.route('/reviews/<review_id>', methods=["GET"])
 def reviews_by_id_handler(review_id):
   if request.method == 'GET':
     review = Review.query.filter_by(id=review_id).first()
@@ -128,5 +112,6 @@ def reviews_by_id_handler(review_id):
 
 @main.errorhandler(404)
 def page_not_found(e):
-    return 'The URL for this page is {}'.format(url_for('page_not_found')), 404
+    return "error at: " + request.url, 404
+
 
