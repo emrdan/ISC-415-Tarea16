@@ -3,7 +3,7 @@ from flask import jsonify
 from flask import make_response
 from movier.data.models import db, Movie, Review
 from sys import platform
-import urllib.request
+import urllib
 import os
 
 main = Blueprint('main', __name__, template_folder='templates')
@@ -23,7 +23,7 @@ def movie_handler():
               localUrl = os.path.abspath(os.path.join(os.getcwd(), os.pardir)) + '\\app\movier\static\images\\' + str(movies[i]["id"]) + ".jpg"
             else:
               localUrl = os.path.abspath(os.path.join(os.getcwd(), os.pardir)) + '/app/movier/static/images/' + str(movies[i]["id"]) + ".jpg"
-            urllib.request.urlretrieve(posterUrl, localUrl)
+            urllib.urlretrieve(posterUrl, localUrl)
             movie = Movie(movies[i]["id"], movies[i]["title"], movies[i]["overview"], movies[i]["poster_path"])
           else:
             movie = Movie(movies[i]["id"], movies[i]["title"], movies[i]["overview"], None)
