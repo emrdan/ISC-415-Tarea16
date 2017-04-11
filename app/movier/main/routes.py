@@ -128,5 +128,5 @@ def reviews_by_id_handler(review_id):
 
 @main.errorhandler(404)
 def page_not_found(e):
-    return 'The URL for this page is {}'.format(url_for('index')), 404
+    return 'The URL for this page is {}'.format(url_for('page_not_found')), 404
 
