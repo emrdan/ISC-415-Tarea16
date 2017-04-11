@@ -49,12 +49,11 @@
     </div>
   </div>
   <script>
-      var host = "http://" + window.location.host;
       var maxRating = 5;
       function getMovie(movie_id) {
         return new Promise(function(resolve, reject) {
           var xhr = new XMLHttpRequest();
-          xhr.open('GET', host + "/movies/" + movie_id, true);
+          xhr.open('GET', "/movies/" + movie_id, true);
           xhr.send();
           xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
@@ -69,7 +68,7 @@
       function getReview(review_id) {
         return new Promise(function(resolve, reject) {
           var xhr = new XMLHttpRequest();
-          xhr.open('GET', host + "/reviews/" + review_id, true);
+          xhr.open('GET', "/reviews/" + review_id, true);
           xhr.send();
           xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {

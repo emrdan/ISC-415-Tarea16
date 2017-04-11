@@ -33,7 +33,6 @@
   </div>
   <div id="content"></div>
   <script>
-      var host = "http://" + window.location.host;
       var cache = []
       var list = []
       var input = document.getElementById("movies");
@@ -101,7 +100,7 @@
       function dbSearch(searchTerm) {
         return new Promise(function(resolve, reject) {
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', host + "/movies/search/?query=" + searchTerm, true);
+        xhr.open('GET', "/movies/search/?query=" + searchTerm, true);
         xhr.send();
         xhr.onreadystatechange = function () {
           if (this.readyState == 4 && this.status == 200) {
@@ -118,7 +117,7 @@
         console.log("Adding Movies");
         var data = { movies: movies }
         var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("POST", host + "/movies", true);
+        xmlhttp.open("POST", "/movies", true);
         xmlhttp.setRequestHeader("Content-Type", "application/json");
         xmlhttp.send(JSON.stringify(data));
       }
@@ -159,7 +158,7 @@
         data.append('device_id', userAgent);
 
         var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("POST", host + "/reviews", true);
+        xmlhttp.open("POST", "/reviews", true);
         xmlhttp.send(data);
         xmlhttp.onreadystatechange = function () {
             var container = document.getElementById('content');
