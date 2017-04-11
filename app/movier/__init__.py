@@ -14,7 +14,7 @@ db.init_app(application)
 with application.app_context():
     db.create_all()
 
-application.register_blueprint(main, url_prefix='/daniel')
+application.register_blueprint(main, url_prefix='/')
 
 @application.route("/")
 def home():
