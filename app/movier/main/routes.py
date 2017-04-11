@@ -6,7 +6,7 @@ from sys import platform
 import urllib
 import os
 
-main = Blueprint('main', __name__, template_folder='templates')
+main = Blueprint('main', __name__, url_prefix='/daniel')
 
 @main.route('movies', methods=["POST"])
 def movie_handler():
