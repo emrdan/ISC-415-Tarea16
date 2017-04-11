@@ -126,3 +126,7 @@ def reviews_by_id_handler(review_id):
     review = review.serialize()
     return jsonify(review)
 
+@main.errorhandler(404)
+def page_not_found(e):
+    return 'The URL for this page is {}'.format(url_for('index')), 404
+
