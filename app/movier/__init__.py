@@ -31,6 +31,10 @@ def serve_css(filename):
 def serve_js(filename):
     return send_from_directory("static/js", filename, as_attachment=False)
 
+@application.errorhandler(500)
+def page_not_found(error):
+    return "error interno manito"
+
 application.register_blueprint(main)
 
 if __name__ == "__main__":
