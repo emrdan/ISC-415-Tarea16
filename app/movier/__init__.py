@@ -33,7 +33,7 @@ def serve_js(filename):
 
 @application.errorhandler(500)
 def page_not_found(error):
-    return "error interno manito"
+    return "error interno manito", 500
 
 application.register_blueprint(main)
 
