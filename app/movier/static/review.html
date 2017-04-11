@@ -33,6 +33,7 @@
   </div>
   <div id="content"></div>
   <script>
+      var href = window.location.origin + "/" + window.location.pathname.split("/")[1];
       var cache = []
       var list = []
       var input = document.getElementById("movies");
@@ -100,7 +101,7 @@
       function dbSearch(searchTerm) {
         return new Promise(function(resolve, reject) {
         var xhr = new XMLHttpRequest();
-        xhr.open('GET', "/movies/search/?query=" + searchTerm, true);
+        xhr.open('GET', href + "/movies/search/?query=" + searchTerm, true);
         xhr.send();
         xhr.onreadystatechange = function () {
           if (this.readyState == 4 && this.status == 200) {
@@ -117,7 +118,7 @@
         console.log("Adding Movies");
         var data = { movies: movies }
         var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("POST", "/movies", true);
+        xmlhttp.open("POST", href + "/movies", true);
         xmlhttp.setRequestHeader("Content-Type", "application/json");
         xmlhttp.send(JSON.stringify(data));
       }
@@ -158,7 +159,7 @@
         data.append('device_id', userAgent);
 
         var xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("POST", "/reviews", true);
+        xmlhttp.open("POST", href + "/reviews", true);
         xmlhttp.send(data);
         xmlhttp.onreadystatechange = function () {
             var container = document.getElementById('content');

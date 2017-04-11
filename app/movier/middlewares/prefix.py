@@ -6,8 +6,10 @@ class PrefixMiddleware(object):
 
     def __call__(self, environ, start_response):
 
+        print(environ['PATH_INFO']);
         if environ['PATH_INFO'].startswith(self.prefix):
             environ['PATH_INFO'] = environ['PATH_INFO'][len(self.prefix):]
+            print(environ['PATH_INFO']);
             environ['SCRIPT_NAME'] = self.prefix
             return self.app(environ, start_response)
         else:

@@ -25,10 +25,11 @@
   <div id="content" class="container-fluid"></div>
   <br/>
   <script>
+      var href = window.location.origin + "/" + window.location.pathname.split("/")[1];
       function getMovieReview(movie_id) {
         return new Promise(function(resolve, reject) {
           var xhr = new XMLHttpRequest();
-          xhr.open('GET', "/reviews/movie/" + movie_id, true);
+          xhr.open('GET', href + "/reviews/movie/" + movie_id, true);
           xhr.send();
           xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
@@ -43,7 +44,7 @@
       function getReviewedMovies() {
         return new Promise(function(resolve, reject) {
           var xhr = new XMLHttpRequest();
-          xhr.open('GET', "/movies/reviewed", true);
+          xhr.open('GET', href + "/movies/reviewed", true);
           xhr.send();
           xhr.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
