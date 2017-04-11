@@ -8,6 +8,22 @@ import os
 
 main = Blueprint('main', __name__)
 
+@main.route("/")
+def home():
+  return application.send_static_file("reviews.html");
+
+@main.route('/<path:filename>')
+def serve_html(filename):
+    return send_from_directory("static", filename, as_attachment=False)
+
+@main.route('/css/<path:filename>')
+def serve_css(filename):
+    return send_from_directory("static/css", filename, as_attachment=False)
+
+@main.route('/js/<path:filename>')
+def serve_js(filename):
+    return send_from_directory("static/js", filename, as_attachment=False)
+
 @main.route('movies', methods=["POST"])
 def movie_handler():
   if request.method == 'POST':

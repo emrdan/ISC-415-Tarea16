@@ -16,21 +16,5 @@ with application.app_context():
 
 application.register_blueprint(main, url_prefix='/')
 
-@application.route("/")
-def home():
-  return application.send_static_file("reviews.html");
-
-@application.route('/<path:filename>')
-def serve_html(filename):
-    return send_from_directory("static", filename, as_attachment=False)
-
-@application.route('/css/<path:filename>')
-def serve_css(filename):
-    return send_from_directory("static/css", filename, as_attachment=False)
-
-@application.route('/js/<path:filename>')
-def serve_js(filename):
-    return send_from_directory("static/js", filename, as_attachment=False)
-
 if __name__ == "__main__":
     application.run(host='0.0.0.0')
