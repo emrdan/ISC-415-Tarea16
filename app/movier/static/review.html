@@ -8,7 +8,7 @@
 <body>
   <br />
   <div class="container">
-    <form class="form-inline">
+    <form class="form-horizontal">
     <div class="form-group" id="movieBox">
       <label for="movieName">Movie Name</label>
       <input type="text" id="movies" class="form-control awesomplete" placeholder="Pokemon: The Movie" oninput="fillList(this.value)" required>
@@ -17,8 +17,6 @@
       <label for="username">Username</label>
       <input type="text" class="form-control" id="username" placeholder="Musk20" required>
     </div>
-    </form>
-    <form>
       <div class="form-group" id="reviewBox">
         <label for="review">Review</label>
         <textarea id="review" class="form-control" rows="3" required></textarea>
@@ -192,6 +190,9 @@
             reviewBox.classList.add("has-error");
         } else {
           sendReview(movieName.value, username.value, review.value, slider.value, navigator.userAgent);
+          movieBox.classList.remove("has-error");
+          userBox.classList.remove("has-error");
+          reviewBox.classList.remove("has-error");
           movieName.value = '';
           username.value = '';
           review.value = '';
