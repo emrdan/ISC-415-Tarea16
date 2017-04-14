@@ -117,7 +117,8 @@
               alert.classList.add("alert", "alert-danger");
               alert.innerHTML = "That's not a valid movie name. Pick one from the dropdown list, please."
               container.appendChild(alert);
-          } else {
+          } 
+          if(movieName.length >= 2 && validateAgainstList(movieName)) {
             var container = document.getElementById('container');
             container.removeChild(container.lastChild);
           }
