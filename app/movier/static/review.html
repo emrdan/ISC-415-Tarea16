@@ -92,26 +92,29 @@
       function fillList(movieName) {
         movies = getMovies(movieName);
         movies.then(function(result) {
-          for(var i = 0; i < result.length; i++) {
-            if(!checkList(result[i].title)) {
-              list.push(result[i].title);
+          if(result.length > 0) {
+            for(var i = 0; i < result.length; i++) {
+              if(!checkList(result[i].title)) {
+                list.push(result[i].title);
+              }
+            }
+            awesomplete.list = list;
+          } else {
+            if(movieBox.value.length > 2 && ) {
+              var container = document.getElementById("container");
+              var alert = document.createElement("div");
+              var strongText = document.createElement("strong");
+              strongText.innerHTML = "Hey!"
+              alert.classList.add("alert", "alert-danger");
+              alert.innerHTML = "That's not a valid movie name. Pick one from the dropdown list, please."
+              alert.appendChild(strongText);
+              container.appendChild(alert);
             }
           }
-          awesomplete.list = list;
         });
 
         var movieBox = document.getElementById("movies");
 
-        if(movieBox.value.length > 2) {
-          var container = document.getElementById("container");
-          var alert = document.createElement("div");
-          var strongText = document.createElement("strong");
-          strongText.innerHTML = "Hey!"
-          alert.classList.add("alert", "alert-danger");
-          alert.innerHTML = "That's not a valid movie name. Pick one from the dropdown list, please."
-          alert.appendChild(strongText);
-          container.appendChild(alert);
-        }
       }
 
       function dbSearch(searchTerm) {
