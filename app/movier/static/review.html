@@ -50,6 +50,17 @@
         elm.innerHTML = value;
       }
 
+      var movies = document.getElementById("movies");
+      movies.onblur = function(event) {
+        var lowerCasedList = list.map(function(elem) {
+          return elem.toLowerCase();
+        });
+        
+        if(lowerCasedList.indexOf(movies.value.toLowerCase()) <= -1) {
+          showAlert();
+        }
+      }
+
       function getMovies(movieName) {
         return new Promise(function(resolve, reject) {
           var movies = dbSearch(movieName);
@@ -115,25 +126,33 @@
         }
       }
 
-      function toggleAlert(movieName) {
-        if(movieName.length >= 2 && !validateAgainstList(movieName)) {
-          var alerts = document.getElementsByClassName("alert-danger");
+      function showAlert () {
+        validMovie = false;
+        var alerts = document.getElementsByClassName("alert-danger");
           if(alerts.length === 0) {
-            validMovie = false;
             var container = document.getElementById("container");
             var alert = document.createElement("div");
             alert.classList.add("alert", "alert-danger");
             alert.innerHTML = "That's not a valid movie name. Pick one from the dropdown list, please."
             container.appendChild(alert);
           }
+      }
+
+      function hideAlert() {
+        validMovie = true;
+        var alerts = document.getElementsByClassName("alert-danger");
+        if(alerts.length > 0) {
+          var container = document.getElementById('container');
+          container.removeChild(container.lastChild);
+        }
+      }
+
+      function toggleAlert(movieName) {
+        if(movieName.length >= 2 && !validateAgainstList(movieName)) {
+          showAlert();
         } 
         if(movieName.length >= 2 && validateAgainstList(movieName)) {
-          validMovie = true;
-          var alerts = document.getElementsByClassName("alert-danger");
-          if(alerts.length > 0) {
-            var container = document.getElementById('container');
-            container.removeChild(container.lastChild);
-          }
+          hideAlert();
         }
       }
 
