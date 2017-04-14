@@ -111,14 +111,16 @@
           }
           if(movieName.length >= 2 && !validateAgainstList(movieName)) {
             var alerts = document.getElementsByClassName("alert-danger");
-            console.log(alerts);
             if(alerts.length === 0)
               var container = document.getElementById("container");
               var alert = document.createElement("div");
               alert.classList.add("alert", "alert-danger");
               alert.innerHTML = "That's not a valid movie name. Pick one from the dropdown list, please."
               container.appendChild(alert);
-            }
+          } else {
+            var container = document.getElementById('container');
+            container.removeChild(container.lastChild);
+          }
         });
       }
 
