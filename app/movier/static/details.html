@@ -172,7 +172,7 @@
 
       h1.innerHTML = "Profile";
 
-      title.innerHTML = "<b>Title: </b>" + movie["title"];
+      ttitle.innerHTML = "<b>Title: </b>" + movie["title"].replace(":", " -");
       overview.innerHTML = "<b>Overview: </b>" + movie["description"];
       averageRating.innerHTML = "<b>Average Rating: </b>" + movie["average"];
 
