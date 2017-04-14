@@ -111,7 +111,7 @@
           }
         });
 
-        if(movieName.length >= 2 && validateAgainstList(movieName)) {
+        if(movieName.length >= 2 && validateAgainstList(movieName) == false) {
           var container = document.getElementById("container");
           var alert = document.createElement("div");
           alert.classList.add("alert", "alert-danger");
