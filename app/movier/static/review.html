@@ -55,9 +55,8 @@
         var lowerCasedList = list.map(function(elem) {
           return elem.toLowerCase();
         });
-        console.log(movieInput);
-        console.log(this.value);
-        if(lowerCasedList.indexOf(movies.value.toLowerCase()) <= -1) {
+
+        if(lowerCasedList.indexOf(this.value.toLowerCase()) <= -1) {
           showAlert();
         }
       }
