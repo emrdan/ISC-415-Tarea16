@@ -90,10 +90,10 @@
       }
 
       function validateAgainstList (movieName) {
+        console.log(list[i].toLowerCase());
+            console.log(movieName.toLowerCase());
         for (var i = 0; i < list.length; i++) {
           if(list[i].toLowerCase().indexOf(movieName.toLowerCase()) > -1) {
-            console.log(list[i].toLowerCase());
-            console.log(movieName.toLowerCase());
             return true;
           }
         }
