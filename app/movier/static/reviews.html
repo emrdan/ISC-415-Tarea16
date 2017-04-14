@@ -8,6 +8,18 @@
     #reviewLink {
       text-align: right;
     }
+    #detailsLink:link {
+        color: black;
+    }
+    #detailsLink:visited {
+        color: black;
+    }
+    #detailsLink:hover {
+        color: black;
+    }
+    #detailsLink:active {
+        color: black;
+    }
     p {
       text-align: left;
       margin-right: 15px;
@@ -102,10 +114,13 @@
         mediaDiv.classList.add("media");
         mediaObject.classList.add("media-left", "media-middle");
         mediaBody.classList.add("media-body");
+
+        title.classList.add("summary", "title");
         
         image.setAttribute("src", imagePath);
         image.classList.add("media-object");
         
+        detailsLink.setAttribute("id", "detailsLink")
         detailsLink.setAttribute("href", "details.html?id=" + movie["id"]);
         detailsLink.appendChild(title);
 
@@ -114,9 +129,9 @@
         movie["description"] = movie["description"].length > 150 ? 
             movie["description"].substring(0, 150) + "..." : movie["description"];
 
-        title.innerHTML = "Title. " + movie["title"];
-        overview.innerHTML = "Overview. " + movie["description"];
-        averageRating.innerHTML = "Average Rating. " + movie["average"];
+        title.innerHTML = "<b>Title |</b>" + movie["title"];
+        overview.innerHTML = "<b>Overview |</b>" + movie["description"];
+        averageRating.innerHTML = "<b>Average Rating |</b>" + movie["average"];
 
         mediaBody.appendChild(detailsLink);
         mediaBody.appendChild(overview);
