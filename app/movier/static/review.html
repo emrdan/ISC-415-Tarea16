@@ -52,11 +52,7 @@
 
       var movieInput = document.getElementById("movies");
       movies.onblur = function(event) {
-        var lowerCasedList = list.map(function(elem) {
-          return elem.toLowerCase();
-        });
-
-        if(lowerCasedList.indexOf(this.value.toLowerCase()) <= -1) {
+        if(list.indexOf(this.value <= -1) {
           showAlert();
         }
       }
