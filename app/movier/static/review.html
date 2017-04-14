@@ -92,8 +92,8 @@
       function validateAgainstList (movieName) {
         for (var i = 0; i < list.length; i++) {
           if(list[i].toLowerCase().indexOf(movieName.toLowerCase()) > -1) {
-            console.log(list[i]);
-            console.log(movieName);
+            console.log(list[i].toLowerCase());
+            console.log(movieName.toLowerCase());
             return true;
           }
         }
