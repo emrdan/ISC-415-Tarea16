@@ -50,13 +50,13 @@
         elm.innerHTML = value;
       }
 
-      var movies = document.getElementById("movies");
+      var movieInput = document.getElementById("movies");
       movies.onblur = function(event) {
         var lowerCasedList = list.map(function(elem) {
           return elem.toLowerCase();
         });
-        console.log(movies);
-        console.log(movies.value);
+        console.log(movieInput);
+        console.log(movieInput.value);
         if(lowerCasedList.indexOf(movies.value.toLowerCase()) <= -1) {
           showAlert();
         }
