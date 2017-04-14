@@ -89,6 +89,14 @@
         return false;
       }
 
+      function validateAgainstList (movieName) {
+        for (var i = 0; i < list.length; i++) {
+          if(list[i].toLowerCase().indexOf(movieName.toLowerCase() > -1)) {
+            return true;
+          }
+        }
+      }
+
       function fillList(movieName) {
         movies = getMovies(movieName);
         movies.then(function(result) {
@@ -99,14 +107,13 @@
               }
             }
             awesomplete.list = list;
-          } else {
-            if(movieBox.value.length > 2) {
-              var container = document.getElementById("container");
-              var alert = document.createElement("div");
-              alert.classList.add("alert", "alert-danger");
-              alert.innerHTML = "That's not a valid movie name. Pick one from the dropdown list, please."
-              container.appendChild(alert);
-            }
+          }
+          if(movieName.toLowerCase.length > 2 && !validateAgainstList(movieName)) {
+            var container = document.getElementById("container");
+            var alert = document.createElement("div");
+            alert.classList.add("alert", "alert-danger");
+            alert.innerHTML = "That's not a valid movie name. Pick one from the dropdown list, please."
+            container.appendChild(alert);
           }
         });
 
