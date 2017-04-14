@@ -130,7 +130,7 @@
         movie["description"] = movie["description"].length > 150 ? 
             movie["description"].substring(0, 150) + "..." : movie["description"];
 
-        title.innerHTML = "<b>Title: </b>" + movie["title"].replace(":", "-");
+        title.innerHTML = "<b>Title: </b>" + movie["title"].replace(":", " -");
         overview.innerHTML = "<b>Overview: </b>" + movie["description"];
         averageRating.innerHTML = "<b>Average Rating: </b>" + movie["average"];
 
