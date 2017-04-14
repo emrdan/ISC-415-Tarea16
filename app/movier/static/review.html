@@ -8,10 +8,6 @@
       width: 300px;
       margin: 0 auto;
     }
-    .container {
-      border-radius: 3px;
-      border-style: solid;
-    }
   </style>
   <script src="js/awesomplete.js"></script>
 </head>
@@ -22,7 +18,7 @@
       <form class="form-horizontal" id="send">
       <div class="form-group" id="movieBox">
         <label for="movieName">Movie Name</label><br />
-        <input type="text" id="movies" class="form-control awesomplete" placeholder="Pokemon: The Movie" oninput="fillList(this.value)" required>
+        <input type="text" id="movies" class="form-control" placeholder="Pokemon: The Movie" oninput="fillList(this.value)" required>
       </div>
       <div class="form-group" id="userBox">
         <label for="username">Username</label>
