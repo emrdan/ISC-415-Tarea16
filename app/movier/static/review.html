@@ -91,8 +91,6 @@
 
       function validateAgainstList (movieName) {
         for (var i = 0; i < list.length; i++) {
-          console.log(list[i].toLowerCase());
-        console.log(movieName.toLowerCase());
           if(list[i].toLowerCase().indexOf(movieName.toLowerCase()) > -1) {
             return true;
           }
@@ -113,6 +111,7 @@
           }
         });
 
+        console.log(validateAgainstList(movieName));
         if(movieName.length >= 2 && !validateAgainstList(movieName)) {
           var container = document.getElementById("container");
           var alert = document.createElement("div");
