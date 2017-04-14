@@ -110,7 +110,7 @@
             awesomplete.list = list;
           }
           if(movieName.length >= 2 && !validateAgainstList(movieName)) {
-            if(document.getElementByTagName("alert").length === 0)
+            if(document.getElementsByTagName("alert").length === 0)
               var container = document.getElementById("container");
               var alert = document.createElement("div");
               alert.classList.add("alert", "alert-danger");
