@@ -95,6 +95,7 @@
             return true;
           }
         }
+        return false;
       }
 
       function fillList(movieName) {
@@ -108,7 +109,6 @@
             }
             awesomplete.list = list;
           }
-          console.log(validateAgainstList(movieName));
           if(movieName.length >= 2 && !validateAgainstList(movieName)) {
             var container = document.getElementById("container");
             var alert = document.createElement("div");
