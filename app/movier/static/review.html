@@ -51,33 +51,30 @@
 
       function getMovies(movieName) {
         return new Promise(function(resolve, reject) {
-          if(cache.indexOf(movieName.toLowerCase()) === -1) {
-            cache.push(movieName.toLowerCase())
-            if(movieName.length >= 2) {
-              var movies = dbSearch(movieName);
-              movies.then(function(value) {
-                if(value.length === 0) {
-                   console.log("Movies from API");
-                   get(movieName, 1).then(function(result) {
-                    moviesByTitle = result.filter(movie => {
-                      if(movie.title.toLowerCase().startsWith(movieName.toLowerCase())) {
-                        return movie;
-                      }
-                    });
-                    console.log(moviesByTitle)
-                    if(moviesByTitle.length !== 0) {
-                      addMovies(moviesByTitle);
+          if(movieName.length >= 2) {
+            var movies = dbSearch(movieName);
+            movies.then(function(value) {
+              if(value.length === 0) {
+                 console.log("Movies from API");
+                 get(movieName, 1).then(function(result) {
+                  moviesByTitle = result.filter(movie => {
+                    if(movie.title.toLowerCase().startsWith(movieName.toLowerCase())) {
+                      return movie;
                     }
-                    resolve(moviesByTitle);
-                   });
-                } else {
-                  console.log("Movies from DB!");
-                  resolve(value);
-                }
-              });
-            }
+                  });
+                  console.log(moviesByTitle)
+                  if(moviesByTitle.length !== 0) {
+                    addMovies(moviesByTitle);
+                  }
+                  resolve(moviesByTitle);
+                 });
+              } else {
+                console.log("Movies from DB!");
+                resolve(value);
+              }
+            });
           }
-        });
+      });
       }
 
       function checkList(movieTitle) {
@@ -99,34 +96,37 @@
       }
 
       function fillList(movieName) {
-        movies = getMovies(movieName);
-        movies.then(function(result) {
-          if(result.length > 0) {
-            for(var i = 0; i < result.length; i++) {
-              if(!checkList(result[i].title)) {
-                list.push(result[i].title);
+        if(cache.indexOf(movieName.toLowerCase()) === -1) {
+          cache.push(movieName.toLowerCase())
+          movies = getMovies(movieName);
+          movies.then(function(result) {
+            if(result.length > 0) {
+              for(var i = 0; i < result.length; i++) {
+                if(!checkList(result[i].title)) {
+                  list.push(result[i].title);
+                }
               }
+              awesomplete.list = list;
             }
-            awesomplete.list = list;
+          });
+        }
+        if(movieName.length >= 2 && !validateAgainstList(movieName)) {
+          var alerts = document.getElementsByClassName("alert-danger");
+          if(alerts.length === 0) {
+            var container = document.getElementById("container");
+            var alert = document.createElement("div");
+            alert.classList.add("alert", "alert-danger");
+            alert.innerHTML = "That's not a valid movie name. Pick one from the dropdown list, please."
+            container.appendChild(alert);
           }
-          if(movieName.length >= 2 && !validateAgainstList(movieName)) {
-            var alerts = document.getElementsByClassName("alert-danger");
-            if(alerts.length === 0) {
-              var container = document.getElementById("container");
-              var alert = document.createElement("div");
-              alert.classList.add("alert", "alert-danger");
-              alert.innerHTML = "That's not a valid movie name. Pick one from the dropdown list, please."
-              container.appendChild(alert);
-            }
-          } 
-          if(movieName.length >= 2 && validateAgainstList(movieName)) {
-            var alerts = document.getElementsByClassName("alert-danger");
-            if(alerts.length > 0) {
-              var container = document.getElementById('container');
-              container.removeChild(container.lastChild);
-            }
+        } 
+        if(movieName.length >= 2 && validateAgainstList(movieName)) {
+          var alerts = document.getElementsByClassName("alert-danger");
+          if(alerts.length > 0) {
+            var container = document.getElementById('container');
+            container.removeChild(container.lastChild);
           }
-        });
+        }
       }
 
       function dbSearch(searchTerm) {
