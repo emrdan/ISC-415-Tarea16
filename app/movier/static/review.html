@@ -119,8 +119,11 @@
               container.appendChild(alert);
           } 
           if(movieName.length >= 2 && validateAgainstList(movieName)) {
-            var container = document.getElementById('container');
-            container.removeChild(container.lastChild);
+            var alerts = document.getElementsByClassName("alert-danger");
+            if(alerts.length > 0) {
+              var container = document.getElementById('container');
+              container.removeChild(container.lastChild);
+            }
           }
         });
       }
