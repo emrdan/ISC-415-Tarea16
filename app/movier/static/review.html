@@ -108,7 +108,8 @@
             }
             awesomplete.list = list;
           }
-          if(movieName.toLowerCase.length > 2 && !validateAgainstList(movieName)) {
+          console.log(validateAgainstList(movieName));
+          if(movieName.length >= 2 && !validateAgainstList(movieName)) {
             var container = document.getElementById("container");
             var alert = document.createElement("div");
             alert.classList.add("alert", "alert-danger");
