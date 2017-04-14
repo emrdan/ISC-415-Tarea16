@@ -101,14 +101,24 @@
         });
 
         var movieBox = document.getElementById("movies");
-        if(list.indexOf(movieBox.value) <= -1) {
+        var isMovieIn = false;
+
+        if(moviBox.value >= 2) {
+          for(var i = 0; i < list.length; i++) {
+            if(list[i].indexOf(movieBox.value) > -1) {
+              isMovieIn = true;
+              break;
+            }
+          }
+        }
+        if(!isMovieIn) {
           var container = document.getElementById("container");
           var alert = document.createElement("div");
           var strongText = document.createElement("strong");
           strongText.innerHTML = "Hey!"
           alert.classList.add("alert", "alert-danger");
-          alert.appendChild(strongText);
           alert.innerHTML = "That's not a valid movie name. Pick one from the dropdown list, please."
+          alert.appendChild(strongText);
           container.appendChild(alert);
         }
       }
