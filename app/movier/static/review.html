@@ -100,6 +100,18 @@
           }
           awesomplete.list = list;
         });
+
+        var movieBox = document.getElementById("movies");
+        if(list.indexOf(movieBox.value) <= -1) {
+          var content = document.getElementById("content");
+          var alert = document.createElement("div");
+          var strongText = document.createElement("strong");
+          strongText.innerHTML = "Hey!"
+          alert.classList.add("alert alert-danger");
+          alert.appendChild(strongText);
+          alert.innerHTML = "That's not a valid movie name. Pick one from the dropdown list, please."
+          content.appendChild(alert);
+        }
       }
 
       function dbSearch(searchTerm) {
