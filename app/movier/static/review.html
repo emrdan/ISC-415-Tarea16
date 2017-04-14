@@ -51,30 +51,27 @@
 
       function getMovies(movieName) {
         return new Promise(function(resolve, reject) {
-          if(movieName.length >= 2) {
-            var movies = dbSearch(movieName);
-            movies.then(function(value) {
-              if(value.length === 0) {
-                 console.log("Movies from API");
-                 get(movieName, 1).then(function(result) {
-                  moviesByTitle = result.filter(movie => {
-                    if(movie.title.toLowerCase().startsWith(movieName.toLowerCase())) {
-                      return movie;
-                    }
-                  });
-                  console.log(moviesByTitle)
-                  if(moviesByTitle.length !== 0) {
-                    addMovies(moviesByTitle);
+          var movies = dbSearch(movieName);
+          movies.then(function(value) {
+            if(value.length === 0) {
+               console.log("Movies from API");
+               get(movieName, 1).then(function(result) {
+                moviesByTitle = result.filter(movie => {
+                  if(movie.title.toLowerCase().startsWith(movieName.toLowerCase())) {
+                    return movie;
                   }
-                  resolve(moviesByTitle);
-                 });
-              } else {
-                console.log("Movies from DB!");
-                resolve(value);
-              }
-            });
-          }
-      });
+                });
+                if(moviesByTitle.length !== 0) {
+                  addMovies(moviesByTitle);
+                }
+                resolve(moviesByTitle);
+               });
+            } else {
+              console.log("Movies from DB!");
+              resolve(value);
+            }
+          });
+        });
       }
 
       function checkList(movieTitle) {
@@ -96,21 +93,25 @@
       }
 
       function fillList(movieName) {
-        if(cache.indexOf(movieName.toLowerCase()) === -1) {
-          cache.push(movieName.toLowerCase())
-          movies = getMovies(movieName);
-          movies.then(function(result) {
-            if(result.length > 0) {
-              for(var i = 0; i < result.length; i++) {
-                if(!checkList(result[i].title)) {
-                  list.push(result[i].title);
+        if(movieName.length >= 2) {
+          if(cache.indexOf(movieName.toLowerCase()) === -1) {
+            cache.push(movieName.toLowerCase())
+            movies = getMovies(movieName);
+            movies.then(function(result) {
+              if(result.length > 0) {
+                for(var i = 0; i < result.length; i++) {
+                  if(!checkList(result[i].title)) {
+                    list.push(result[i].title);
+                  }
                 }
+                awesomplete.list = list;
               }
-              awesomplete.list = list;
-            }
-          });
+              toggleAlert(movieName);
+            });
+          } else {
+            toggleAlert(movieName);
+          }
         }
-        toggleAlert(movieName);
       }
 
       function toggleAlert(movieName) {
