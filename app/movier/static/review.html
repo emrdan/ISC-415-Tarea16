@@ -108,12 +108,12 @@
               }
               awesomplete.list = list;
             }
-            toggleAlert();
+            toggleAlert(movieName);
           });
         }
       }
 
-      function toggleAlert() {
+      function toggleAlert(movieName) {
         if(movieName.length >= 2 && !validateAgainstList(movieName)) {
           var alerts = document.getElementsByClassName("alert-danger");
           if(alerts.length === 0) {
