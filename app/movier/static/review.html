@@ -36,6 +36,7 @@
     </div>
   </div>
   <script>
+      var validMovie;
       var href = window.location.origin + "/" + window.location.pathname.split("/")[1];
       var cache = []
       var list = []
@@ -118,6 +119,7 @@
         if(movieName.length >= 2 && !validateAgainstList(movieName)) {
           var alerts = document.getElementsByClassName("alert-danger");
           if(alerts.length === 0) {
+            validMovie = false;
             var container = document.getElementById("container");
             var alert = document.createElement("div");
             alert.classList.add("alert", "alert-danger");
@@ -126,6 +128,7 @@
           }
         } 
         if(movieName.length >= 2 && validateAgainstList(movieName)) {
+          validMovie = true;
           var alerts = document.getElementsByClassName("alert-danger");
           if(alerts.length > 0) {
             var container = document.getElementById('container');
@@ -222,7 +225,7 @@
         var movieBox = document.getElementById("movieBox");
         var reviewBox = document.getElementById("reviewBox");
 
-        if(!(movieName.value.length && username.value.length && review.value.length && slider.value)) {
+        if(!(validMovie && username.value.length && review.value.length && slider.value)) {
             movieBox.classList.add("has-error");
             userBox.classList.add("has-error");
             reviewBox.classList.add("has-error");
