@@ -107,18 +107,18 @@
         image.classList.add("media-object");
         
         detailsLink.setAttribute("href", "details.html?id=" + movie["id"]);
-        detailsLink.appendChild(image);
+        detailsLink.appendChild(title);
 
-        mediaObject.appendChild(detailsLink);
+        mediaObject.appendChild(image);
 
         movie["description"] = movie["description"].length > 150 ? 
             movie["description"].substring(0, 150) + "..." : movie["description"];
 
-        title.innerHTML = "<b>Title: </b>" + movie["title"];
-        overview.innerHTML = "<b>Overview: </b>" + movie["description"];
-        averageRating.innerHTML = "<b>Average Rating: </b>" + movie["average"];
+        title.innerHTML = "Title. " + movie["title"];
+        overview.innerHTML = "Overview. " + movie["description"];
+        averageRating.innerHTML = "Average Rating. " + movie["average"];
 
-        mediaBody.appendChild(title);
+        mediaBody.appendChild(detailsLink);
         mediaBody.appendChild(overview);
         mediaBody.appendChild(averageRating);
 
