@@ -55,7 +55,8 @@
         var lowerCasedList = list.map(function(elem) {
           return elem.toLowerCase();
         });
-        
+        console.log(movies);
+        console.log(movies.value);
         if(lowerCasedList.indexOf(movies.value.toLowerCase()) <= -1) {
           showAlert();
         }
