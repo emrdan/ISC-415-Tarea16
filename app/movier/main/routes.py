@@ -78,7 +78,7 @@ def movies_reviewed_handler():
         counter = counter + 1
         acum = acum + review["rating"]
       avg = float(acum) / float(counter)
-      movie["average"] = avg
+      movie["average"] = round(avg, 1)
     return jsonify(movies_reviewed)
 
 @main.route('/movies/<movie_id>', methods=["GET"])
@@ -92,7 +92,7 @@ def movie_ic_handler(movie_id):
       counter = counter + 1
       acum = acum + review["rating"]
     avg = float(acum) / float(counter)
-    movie["average"] = avg
+    movie["average"] = round(avg, 1)
     return jsonify(movie)
 
 @main.route('/reviews/movie/<movie_id>', methods=["GET"])
