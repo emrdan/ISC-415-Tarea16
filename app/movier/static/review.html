@@ -56,7 +56,7 @@
 
       var movieInput = document.getElementById("movies");
       movies.onblur = function(event) {
-        if(list.indexOf(this.value) <= -1) {
+        if(this.value.length > 0 && list.indexOf(this.value) <= 1) {
           showAlert();
         }
       }
