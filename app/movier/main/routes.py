@@ -77,7 +77,7 @@ def movies_reviewed_handler():
       for review in movie["reviews"]:
         counter = counter + 1
         acum = acum + review["rating"]
-      avg = acum / counter
+      avg = float(acum) / float(counter)
       movie["average"] = avg
     return jsonify(movies_reviewed)
 
