@@ -92,9 +92,9 @@
               reviews.push(getMovieReview(sortedMovies[i]["id"]));
             }
             Promise.all(reviews).then(function(values) {
-              for (var i = 0; i < sortedMovies.length; i++) {
+             /*for (var i = 0; i < sortedMovies.length; i++) {
                 sortedMovies["average"] = values[i]["rating"]
-              }
+              }*/
               makeMovieList(sortedMovies);
             })
           } else {
