@@ -128,7 +128,8 @@
       }
     function makeMovieList(movies) {
       var container = document.getElementById("content");
-      var heading = document.createElement("h1").innerHTML = "List of Reviewed Movies";
+      var heading = document.createElement("h1");
+      heading.innerHTML = "List of Reviewed Movies";
       container.appendChild(heading);
       for (var i = 0; i < movies.length; i++) {
         appendMovieSummary(movies[i]);
