@@ -7,7 +7,7 @@
     }
     #reviewLink {
       position: fixed;
-      left: 80%;
+      left: 95%;
     }
     #detailsLink:link {
         color: black;
@@ -127,8 +127,10 @@
         container.appendChild(mediaDiv);
       }
     function makeMovieList(movies) {
+      var container = document.getElementById("content");
+      var heading = document.createElement("h1").innerHTML = "List of Reviewed Movies";
+      container.appendChild(heading);
       for (var i = 0; i < movies.length; i++) {
-        console.log(movies[i]);
         appendMovieSummary(movies[i]);
       }
     }
