@@ -1,2 +1,1 @@
-# ISC-415-Tarea16
-
+Done with Python with the use of Flask and SQLAlchemy.
